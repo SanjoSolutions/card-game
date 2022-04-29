@@ -1,0 +1,77 @@
+.board {
+  display: flex;
+  margin-top: 0.5rem;
+}
+
+.board--reverse {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.board__number-of-wins {
+  margin-right: 0.5rem;
+}
+
+.board__number-of-wins-text {
+  border: 1px solid black;
+  background-color: white;
+  padding: 0.5rem;
+  user-select: none;
+}
+
+.board__total-points {
+  border: 1px solid black;
+  color: white;
+  background-color: black;
+  font-weight: bold;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5rem;
+  user-select: none;
+  width: 24px;
+}
+
+.board__rows {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.board__rows--reverse {
+  flex-direction: column-reverse;
+}
+
+.board__rows .melee-row, .board .ranged-row, .board .siege-row {
+  flex: 1 1 33.3333%;
+}
+
+.board__rows .ranged-row {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.board__pass {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 88px;
+}
+
+.board__pass--reverse {
+  flex-direction: column;
+}
+
+.board__pass-button {
+  height: 3rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.board__pass-button--hidden {
+  visibility: hidden;
+}
+
+.board__has-passed {
+  padding: 0.5rem;
+}

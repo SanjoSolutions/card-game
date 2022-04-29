@@ -1,0 +1,20 @@
+.app {
+  box-sizing: border-box;
+  height: 100vh;
+  display: flex;
+  padding-left: 0.5rem;
+}
+
+.app .weather-cards {
+  margin-right: 0.5rem;
+}
+
+.app__player-sides {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.app__player-sides .player-side {
+  flex: 1 1 50%;
+}

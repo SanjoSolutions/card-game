@@ -1,0 +1,14 @@
+{
+  "name": "core",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "devDependencies": {
+    "@jest/globals": "^27.5.1",
+    "jest": "^27.5.1"
+  },
+  "dependencies": {
+    "@sanjo/mathematics": "^0.4.1"
+  }
+}

@@ -1,0 +1,27 @@
+.weather-cards {
+  display: flex;
+  align-items: center;
+}
+
+.weather-cards__inner {
+  display: flex;
+  height: 25%;
+  padding: 0.5rem;
+  border: 1px solid black;
+}
+
+.weather-cards__inner--drag-over .card--empty-slot:first-child {
+  border-style: var(--drag-over-border-style);
+}
+
+.weather-cards .card {
+  margin-right: 0.5rem;
+}
+
+.weather-cards .card:last-child {
+  margin-right: 0;
+}
+
+.card--empty-slot {
+  border-style: none;
+}

@@ -1,0 +1,21 @@
+.hand {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  max-width: 100%;
+  min-height: 72px;
+}
+
+.hand .card {
+  margin-right: 0.5rem;
+  cursor: grab;
+}
+
+.hand .card:last-child {
+  margin-right: 0;
+}
+
+.hand--hide-cards .card {
+  color: black;
+  cursor: auto;
+}

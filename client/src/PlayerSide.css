@@ -1,0 +1,25 @@
+.player-side {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+.player-side--player-to-act {
+  background-color: #fff9e9;
+}
+
+.player-side .hand {
+  flex: 0 0 25%;
+}
+
+.player-side .board {
+  flex: 1 1 auto;
+}
+
+.player-side .board:first-child {
+  flex-direction: column-reverse;
+}
+
+.player-side.player-side--reverse {
+  flex-direction: column-reverse;
+}

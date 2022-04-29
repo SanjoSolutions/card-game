@@ -1,0 +1,17 @@
+.card {
+  box-sizing: border-box;
+  border: 1px solid black;
+  padding: 0.5rem;
+  user-select: none;
+  background-color: white;
+  height: 100%;
+  aspect-ratio: 52 / 72;
+}
+
+.card__current-points--reduced {
+  color: red;
+}
+
+.card__current-points--increased {
+  color: green;
+}
