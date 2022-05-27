@@ -7,19 +7,19 @@ import { WeatherCard } from 'core/WeatherCard.js'
 export function toCardRowString(card) {
   if (typeof card.row === 'number') {
     if (card.row === Row.MELEE) {
-      return 'M'
+      return 'Melee'
     } else if (card.row === Row.RANGED) {
-      return 'R'
+      return 'Ranged'
     } else if (card.row === Row.SIEGE) {
-      return 'S'
+      return 'Siege'
     }
   } else if (card instanceof WeatherCard) {
     if (card instanceof MeleeWeatherCard) {
-      return 'M'
+      return 'Melee'
     } else if (card instanceof RangedWeatherCard) {
-      return 'R'
+      return 'Ranged'
     } else if (card instanceof SiegeWeatherCard) {
-      return 'S'
+      return 'Siege'
     }
   }
   return ''

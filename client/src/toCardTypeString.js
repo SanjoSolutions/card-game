@@ -6,14 +6,14 @@ import { WeatherCard } from 'core/WeatherCard.js'
 
 export function toCardTypeString(card) {
   if (card instanceof UnitCard) {
-    return 'U'
+    return 'Unit'
   } else if (card instanceof DrawCardsCard) {
-    return 'D'
+    return 'Draw'
   } else if (card instanceof HeroCard) {
-    return 'H'
+    return 'Hero'
   } else if (card instanceof SpecialCard) {
-    return 'S'
+    return 'Special'
   } else if (card instanceof WeatherCard) {
-    return 'W'
+    return 'Weather'
   }
 }
