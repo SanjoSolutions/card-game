@@ -1,4 +1,7 @@
 export default {
-  transform: {},
   injectGlobals: false,
+  transformIgnorePatterns: [
+    '/node_modules/(?!@sanjo/)',
+    '\\.pnp\\.[^\\\/]+$'
+  ],
 }

@@ -1,4 +1,5 @@
 import { copy } from '../copy.js'
+import { DoublePointsInRowCard } from '../DoublePointsInRowCard.js'
 import { InRowPlayableCard } from '../InRowPlayableCard.js'
 import { PassAction } from '../PassAction.js'
 import { PlayInRowPlayableCardAction } from '../PlayInRowPlayableCardAction.js'
@@ -27,9 +28,11 @@ export class Bot {
 
 function b(match) {
   const otherPlayerIndex = (match.playerToAct + 1) % 2
-  const needsToWinRoundToStayInTheMatch = match.roundsWon[otherPlayerIndex] === 1
+  const needsToWinRoundToStayInTheMatch = match.roundsWon[otherPlayerIndex] ===
+    1
   const gainLeadStrategy = new GainLeadStrategy()
-  if (needsToWinRoundToStayInTheMatch || gainLeadStrategy.isThereACardThatCanBePlayedToGainTheLead(match)) {
+  if (needsToWinRoundToStayInTheMatch ||
+    gainLeadStrategy.isThereACardThatCanBePlayedToGainTheLead(match)) {
     gainLeadStrategy.act(match)
   } else {
     const giveUpRoundStrategy = new GiveUpRoundStrategy()
@@ -53,14 +56,8 @@ export class GainLeadStrategy {
   act(match) {
     const bestCandidate = this.findBestCandidate(match)
     if (bestCandidate) {
-      const { card } = bestCandidate
-      if (card instanceof InRowPlayableCard) {
-        match.act(new PlayInRowPlayableCardAction(card, card.row))
-      } else if (card instanceof WeatherCard) {
-        match.act(new PlayWeatherCardAction(card))
-      } else {
-        match.act(new PassAction())
-      }
+      const { action } = bestCandidate
+      match.act(action)
     } else {
       match.act(new PassAction())
     }
@@ -68,7 +65,8 @@ export class GainLeadStrategy {
 
   isThereACardThatCanBePlayedToGainTheLead(match) {
     const candidates = this._generateCandidates(match)
-    const candidatesThatGiveTheLead = this._filterCandidatesThatGiveTheLead(candidates)
+    const candidatesThatGiveTheLead = this._filterCandidatesThatGiveTheLead(
+      candidates)
     return candidatesThatGiveTheLead.length >= 1
   }
 
@@ -76,8 +74,11 @@ export class GainLeadStrategy {
     const candidates = this._generateCandidates(match)
     if (candidates.length >= 1) {
       candidates.sort(compareCandidates)
-      const candidatesThatGiveTheLead = this._filterCandidatesThatGiveTheLead(candidates)
-      return candidatesThatGiveTheLead.length >= 1 ? candidatesThatGiveTheLead[0] : candidates[0]
+      const candidatesThatGiveTheLead = this._filterCandidatesThatGiveTheLead(
+        candidates)
+      return candidatesThatGiveTheLead.length >= 1 ?
+        candidatesThatGiveTheLead[0] :
+        candidates[0]
     } else {
       return null
     }
@@ -90,14 +91,45 @@ export class GainLeadStrategy {
         card instanceof InRowPlayableCard ||
         card instanceof WeatherCard
       ))
-      .map(card => {
-        const nextMatch = simulatePlayingCard(match, card)
-        return {
-          card,
-          pointsAdvantage: (
-            nextMatch.players[playerIndex].board.determineTotalPoints(match) -
-            nextMatch.players[(playerIndex + 1) % 2].board.determineTotalPoints(match)
+      .flatMap(card => {
+        if (card instanceof DoublePointsInRowCard) {
+          const candidates = []
+          match.players[playerIndex].board.rows.forEach(
+            (row, rowIndex) => {
+              if (!row.specialCard) {
+                const action = new PlayInRowPlayableCardAction(card, rowIndex)
+                const nextMatch = simulateAction(match, action)
+                const candidate = {
+                  action,
+                  pointsAdvantage: calculatePointsAdvantage(
+                    match,
+                    nextMatch,
+                    playerIndex,
+                  ),
+                }
+                candidates.push(candidate)
+              }
+            },
           )
+          return candidates
+        } else {
+          let action
+          if (card instanceof InRowPlayableCard) {
+            action = new PlayInRowPlayableCardAction(card, card.row)
+          } else if (card instanceof WeatherCard) {
+            action = new PlayWeatherCardAction(card)
+          } else {
+            throw new Error(`Not implemented for card type: ${ card.constructor.name }`)
+          }
+          const nextMatch = simulateAction(match, action)
+          return {
+            action,
+            pointsAdvantage: calculatePointsAdvantage(
+              match,
+              nextMatch,
+              playerIndex,
+            ),
+          }
         }
       })
     return candidates
@@ -108,14 +140,18 @@ export class GainLeadStrategy {
   }
 }
 
-function simulatePlayingCard(match, card) {
+function simulateAction(match, action) {
   const nextMatch = copy(match)
-  if (card instanceof InRowPlayableCard) {
-    nextMatch.act(new PlayInRowPlayableCardAction(card, card.row))
-  } else if (card instanceof WeatherCard) {
-    nextMatch.act(new PlayWeatherCardAction(card))
-  }
+  nextMatch.act(action)
   return nextMatch
+}
+
+function calculatePointsAdvantage(match, nextMatch, playerIndex) {
+  return (
+    nextMatch.players[playerIndex].board.determineTotalPoints(match) -
+    nextMatch.players[(playerIndex + 1) %
+    2].board.determineTotalPoints(match)
+  )
 }
 
 function compareCandidates(a, b) {

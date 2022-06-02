@@ -38,6 +38,12 @@ function copyPlainObject(object) {
 
 export function copyOverEntries(target, source) {
   for (const [key, value] of Object.entries(source)) {
-    target[key] = copy(value)
+    if (!isJestMock(value)) {
+      target[key] = copy(value)
+    }
   }
+}
+
+function isJestMock(value) {
+  return Boolean(value?.hasOwnProperty('mock'))
 }
