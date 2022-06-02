@@ -5,6 +5,15 @@ import { Hand } from './Hand.js'
 import { Leader } from './Leader.js'
 
 export class Player {
+  static deserialize(value) {
+    const player = new Player({
+      index: value.index,
+      deck: value.deck
+    })
+    Object.assign(player, value)
+    return player
+  }
+
   constructor({ index, deck }) {
     this.index = index
     this.deck = deck

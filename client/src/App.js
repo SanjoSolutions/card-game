@@ -7,15 +7,19 @@ import { PlayInRowPlayableCardAction } from 'core/PlayInRowPlayableCardAction.js
 import { PlayWeatherCardAction } from 'core/PlayWeatherCardAction.js'
 import { Row } from 'core/Row.js'
 import { RowSpecialCard } from 'core/RowSpecialCard.js'
+import { serialize } from 'core/serialize.js'
 import { WeatherCard } from 'core/WeatherCard.js'
 import React from 'react'
 import './App.css'
 import { PlayerSide } from './PlayerSide.js'
 import { WeatherCards } from './WeatherCards.js'
+import { deserializeMatch } from 'core/deserializeMatch.js'
 
 export class App extends React.Component {
   constructor(props) {
     super(props)
+
+    window.app = this
 
     this.match = createMatch()
     this.match.initialize()
@@ -70,6 +74,21 @@ export class App extends React.Component {
     this._onCardDroppedInMeleeRowSpecialCardSlot = this._onCardDroppedInMeleeRowSpecialCardSlot.bind(this)
     this._onCardDroppedInRangedRowSpecialCardSlot = this._onCardDroppedInRangedRowSpecialCardSlot.bind(this)
     this._onCardDroppedInSiegeRowSpecialCardSlot = this._onCardDroppedInSiegeRowSpecialCardSlot.bind(this)
+  }
+
+  exportMatch() {
+    return serialize(this.match)
+  }
+
+  importMatch(serializedMatch) {
+    if (typeof serializedMatch === 'object') {
+      serializedMatch = JSON.stringify(serializedMatch)
+    }
+    const match = deserializeMatch(serializedMatch)
+    this.match = match
+    this.match.afterAct = this._afterAct
+    this.forceUpdate()
+    this._afterAct()
   }
 
   componentDidMount() {

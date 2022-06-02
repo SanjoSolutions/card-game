@@ -1,9 +1,16 @@
 import { copyOverEntries } from './copy.js'
 import { determineNextPlayerToAct } from './determineNextPlayerToAct.js'
+import { serialize } from './serialize.js'
 import { shuffle } from './shuffle.js'
 
 export class Match {
   static ROUNDS_TO_WIN_TO_WIN_MATCH = 2
+
+  static deserialize(value) {
+    const match = new Match(value.players)
+    Object.assign(match, value)
+    return match
+  }
 
   get actingPlayer() {
     return this.players[this.playerToAct]
@@ -12,13 +19,16 @@ export class Match {
   constructor(players) {
     this.players = players
     this.weatherCards = []
-    this.initialize()
+    this.hasPlayerPassed = [false, false]
+    this.playerToAct = this._determinePlayerToStart()
+    this.roundsWon = [0, 0]
   }
 
   initialize() {
     this._resetForNextRound()
     for (const player of this.players) {
-      player.deck.cards = shuffle(player.deck.cards.concat(player.discardPile, player.hand.cards))
+      player.deck.cards =
+        shuffle(player.deck.cards.concat(player.discardPile, player.hand.cards))
       player.disacardPile = []
       player.hand.cards = []
     }
@@ -30,7 +40,10 @@ export class Match {
   act(action) {
     action.do(this)
     if (this.canSomeoneStillAct()) {
-      const nextPlayerToAct = determineNextPlayerToAct(this.playerToAct, this.players.length)
+      const nextPlayerToAct = determineNextPlayerToAct(
+        this.playerToAct,
+        this.players.length,
+      )
       if (this._canPlayerStillAct(nextPlayerToAct)) {
         this.playerToAct = nextPlayerToAct
       }
@@ -89,11 +102,14 @@ export class Match {
   }
 
   isAWeatherCardOfTypeActive(weatherCardType) {
-    return this.weatherCards.some(weatherCard => weatherCard instanceof weatherCardType)
+    return this.weatherCards.some(weatherCard => weatherCard instanceof
+      weatherCardType)
   }
 
   _canPlayerStillAct(player) {
-    return this.players[player].hand.cards.length >= 1 && !this.hasPlayerPassed[player]
+    return this.players[player].hand.cards.length >=
+      1 &&
+      !this.hasPlayerPassed[player]
   }
 
   _determinePlayerToStart() {
@@ -110,5 +126,9 @@ export class Match {
     const matchCopy = new Match([])
     copyOverEntries(matchCopy, this)
     return matchCopy
+  }
+
+  serialize() {
+    return serialize(this)
   }
 }
