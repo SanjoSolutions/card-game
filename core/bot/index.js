@@ -55,7 +55,6 @@ export class GainLeadStrategy {
     if (bestCandidate) {
       const { card } = bestCandidate
       if (card instanceof InRowPlayableCard) {
-        // TODO: Row when implemented
         match.act(new PlayInRowPlayableCardAction(card, card.row))
       } else if (card instanceof WeatherCard) {
         match.act(new PlayWeatherCardAction(card))
@@ -83,6 +82,10 @@ export class GainLeadStrategy {
   _generateCandidates(match) {
     const playerIndex = match.playerToAct
     const candidates = match.actingPlayer.hand.cards
+      .filter(card => (
+        card instanceof InRowPlayableCard ||
+        card instanceof WeatherCard
+      ))
       .map(card => {
         const nextMatch = simulatePlayingCard(match, card)
         return {
@@ -104,7 +107,6 @@ export class GainLeadStrategy {
 function simulatePlayingCard(match, card) {
   const nextMatch = copy(match)
   if (card instanceof InRowPlayableCard) {
-    // TODO: Row when implemented
     nextMatch.act(new PlayInRowPlayableCardAction(card, card.row))
   } else if (card instanceof WeatherCard) {
     nextMatch.act(new PlayWeatherCardAction(card))
