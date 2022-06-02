@@ -58,7 +58,11 @@ export class GainLeadStrategy {
         match.act(new PlayInRowPlayableCardAction(card, card.row))
       } else if (card instanceof WeatherCard) {
         match.act(new PlayWeatherCardAction(card))
+      } else {
+        match.act(new PassAction())
       }
+    } else {
+      match.act(new PassAction())
     }
   }
 
