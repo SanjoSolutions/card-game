@@ -1,10 +1,13 @@
-import React from 'react'
-import * as ReactDOMClient from 'react-dom/client'
-import { App } from './App'
-import './index.css'
-import reportWebVitals from './reportWebVitals'
+import { polyfill } from "mobile-drag-drop"
+import React from "react"
+import * as ReactDOMClient from "react-dom/client"
+import { App } from "./App"
+import "./index.css"
+import reportWebVitals from "./reportWebVitals"
 
-const root = ReactDOMClient.createRoot(document.getElementById('root'))
+polyfill()
+
+const root = ReactDOMClient.createRoot(document.getElementById("root"))
 
 root.render(
   <React.StrictMode>
