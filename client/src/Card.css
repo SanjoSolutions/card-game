@@ -9,6 +9,8 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  min-width: 48px;
+  min-height: 48px;
 }
 
 .card__current-points--reduced {
