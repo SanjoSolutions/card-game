@@ -3,7 +3,7 @@ import { useCallback, useRef } from 'react'
 import { Card as CardComponent } from './Card.js'
 import './WeatherCards.css'
 
-export function WeatherCards({ match, height, droppable, onCardDropped }) {
+export function WeatherCards({ match, height, droppable, onCardDropped, isShown }) {
   const ref = useRef(null)
 
   const onDragOver = useCallback(
@@ -48,7 +48,7 @@ export function WeatherCards({ match, height, droppable, onCardDropped }) {
   }
 
   return (
-    <div className="weather-cards">
+    <div className="weather-cards" style={{display: isShown ? 'flex' : undefined}}>
       <div
         ref={ ref }
         className="weather-cards__inner" style={ { height: `${ height }px` } }

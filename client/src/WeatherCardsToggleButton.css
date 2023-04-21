@@ -1,0 +1,13 @@
+.weather-cards-toggle-button {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: calc(50% - 48px - 52px);
+  z-index: 10000;
+}
+
+@media (min-width: 768px) {
+  .weather-cards-toggle-button {
+    display: none;
+  }
+}

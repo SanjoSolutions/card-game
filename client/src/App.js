@@ -14,6 +14,7 @@ import './App.css'
 import { PlayerSide } from './PlayerSide.js'
 import { WeatherCards } from './WeatherCards.js'
 import { deserializeMatch } from 'core/deserializeMatch.js'
+import { WeatherCardsToggleButton } from './WeatherCardsToggleButton.js'
 
 export class App extends React.Component {
   constructor(props) {
@@ -51,6 +52,7 @@ export class App extends React.Component {
         },
       ],
       height: this._calculateHeight(),
+      areWeatherCardsShown: null
     }
 
     this._onCardDragStart = this._onCardDragStart.bind(this)
@@ -74,6 +76,7 @@ export class App extends React.Component {
     this._onCardDroppedInFrontRowSpecialCardSlot = this._onCardDroppedInFrontRowSpecialCardSlot.bind(this)
     this._onCardDroppedInCenterRowSpecialCardSlot = this._onCardDroppedInCenterRowSpecialCardSlot.bind(this)
     this._onCardDroppedInBackRowSpecialCardSlot = this._onCardDroppedInBackRowSpecialCardSlot.bind(this)
+    this._onToggleWeatherCards = this._onToggleWeatherCards.bind(this)
   }
 
   exportMatch() {
@@ -289,6 +292,12 @@ export class App extends React.Component {
     this._act(new PlayInRowPlayableCardAction(card, Row.BACK), this.match.playerToAct)
   }
 
+  _onToggleWeatherCards() {
+    this.setState({
+      areWeatherCardsShown: !this.state.areWeatherCardsShown
+    })
+  }
+
   render() {
     return (
       <div className="app">
@@ -297,7 +306,9 @@ export class App extends React.Component {
           height={ this.state.height }
           droppable={ this.state.isDroppableInWeatherCardsZone }
           onCardDropped={ this._onCardDroppedInWeatherCardsZone }
+          isShown={this.state.areWeatherCardsShown}
         />
+        <WeatherCardsToggleButton onClick={this._onToggleWeatherCards} />
         <div className="app__player-sides">
           <PlayerSide
             match={ this.match }
