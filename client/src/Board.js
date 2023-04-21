@@ -1,28 +1,28 @@
 import React from 'react'
 import './Board.css'
 import { cssClasses } from './cssClasses.js'
-import { MeleeRow } from './MeleeRow.js'
-import { RangedRow } from './RangedRow.js'
-import { SiegeRow } from './SiegeRow.js'
+import { FrontRow } from './FrontRow.js'
+import { CenterRow } from './CenterRow.js'
+import { BackRow } from './BackRow.js'
 
 export function Board({
   board,
   match,
   player,
-  onCardDroppedInMeleeRow,
-  onCardDroppedInRangedRow,
-  onCardDroppedInSiegeRow,
+  onCardDroppedInFrontRow,
+  onCardDroppedInCenterRow,
+  onCardDroppedInBackRow,
   onPass,
-  droppableInMeleeRow,
-  droppableInRangedRow,
-  droppableInSiegeRow,
+  droppableInFrontRow,
+  droppableInCenterRow,
+  droppableInBackRow,
   reverse,
-  onCardDroppedInMeleeRowSpecialCardSlot,
-  isDroppableInMeleeRowSpecialCardSlot,
-  onCardDroppedInRangedRowSpecialCardSlot,
-  isDroppableInRangedRowSpecialCardSlot,
-  onCardDroppedInSiegeRowSpecialCardSlot,
-  isDroppableInSiegeRowSpecialCardSlot,
+  onCardDroppedInFrontRowSpecialCardSlot,
+  isDroppableInFrontRowSpecialCardSlot,
+  onCardDroppedInCenterRowSpecialCardSlot,
+  isDroppableInCenterRowSpecialCardSlot,
+  onCardDroppedInBackRowSpecialCardSlot,
+  isDroppableInBackRowSpecialCardSlot,
   showPassButton
 }) {
   return (
@@ -43,32 +43,32 @@ export function Board({
           ])
         }
       >
-        <SiegeRow
+        <BackRow
           row={ board.rows[2] }
           player={ player }
           match={ match }
-          onCardDropped={ onCardDroppedInSiegeRow }
-          droppable={ droppableInSiegeRow }
-          onCardDroppedInSpecialCardSlot={ onCardDroppedInSiegeRowSpecialCardSlot }
-          droppableInSpecialCardSlot={ isDroppableInSiegeRowSpecialCardSlot }
+          onCardDropped={ onCardDroppedInBackRow }
+          droppable={ droppableInBackRow }
+          onCardDroppedInSpecialCardSlot={ onCardDroppedInBackRowSpecialCardSlot }
+          droppableInSpecialCardSlot={ isDroppableInBackRowSpecialCardSlot }
         />
-        <RangedRow
+        <CenterRow
           row={ board.rows[1] }
           player={ player }
           match={ match }
-          onCardDropped={ onCardDroppedInRangedRow }
-          droppable={ droppableInRangedRow }
-          onCardDroppedInSpecialCardSlot={ onCardDroppedInRangedRowSpecialCardSlot }
-          droppableInSpecialCardSlot={ isDroppableInRangedRowSpecialCardSlot }
+          onCardDropped={ onCardDroppedInCenterRow }
+          droppable={ droppableInCenterRow }
+          onCardDroppedInSpecialCardSlot={ onCardDroppedInCenterRowSpecialCardSlot }
+          droppableInSpecialCardSlot={ isDroppableInCenterRowSpecialCardSlot }
         />
-        <MeleeRow
+        <FrontRow
           row={ board.rows[0] }
           player={ player }
           match={ match }
-          onCardDropped={ onCardDroppedInMeleeRow }
-          droppable={ droppableInMeleeRow }
-          onCardDroppedInSpecialCardSlot={ onCardDroppedInMeleeRowSpecialCardSlot }
-          droppableInSpecialCardSlot={ isDroppableInMeleeRowSpecialCardSlot }
+          onCardDropped={ onCardDroppedInFrontRow }
+          droppable={ droppableInFrontRow }
+          onCardDroppedInSpecialCardSlot={ onCardDroppedInFrontRowSpecialCardSlot }
+          droppableInSpecialCardSlot={ isDroppableInFrontRowSpecialCardSlot }
         />
       </div>
       <div

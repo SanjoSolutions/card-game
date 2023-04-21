@@ -37,7 +37,7 @@ export class InRowPlayableCard extends Card {
   }
 
   copy() {
-    const cardCopy = new InRowPlayableCard(0, Row.MELEE)
+    const cardCopy = new InRowPlayableCard(0, Row.FRONT)
     copyOverEntries(cardCopy, this)
     return cardCopy
   }

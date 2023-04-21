@@ -43,11 +43,11 @@
   flex-direction: column-reverse;
 }
 
-.board__rows .melee-row, .board .ranged-row, .board .siege-row {
+.board__rows .front-row, .board .center-row, .board .back-row {
   flex: 1 1 33.3333%;
 }
 
-.board__rows .ranged-row {
+.board__rows .center-row {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }

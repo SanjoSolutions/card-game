@@ -1,14 +1,14 @@
 import { sum } from '@sanjo/mathematics'
-import { MeleeRow } from './MeleeRow.js'
-import { RangedRow } from './RangedRow.js'
-import { SiegeRow } from './SiegeRow.js'
+import { FrontRow } from './FrontRow.js'
+import { CenterRow } from './CenterRow.js'
+import { BackRow } from './BackRow.js'
 
 export class Board {
   constructor() {
     this.rows = [
-      new MeleeRow(),
-      new RangedRow(),
-      new SiegeRow()
+      new FrontRow(),
+      new CenterRow(),
+      new BackRow()
     ]
   }
 

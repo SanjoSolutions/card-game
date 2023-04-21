@@ -1,9 +1,9 @@
 import { sum } from '@sanjo/mathematics'
 
 export class Row {
-  static MELEE = 0
-  static RANGED = 1
-  static SIEGE = 2
+  static FRONT = 0
+  static CENTER = 1
+  static BACK = 2
 
   constructor() {
     this.specialCard = null

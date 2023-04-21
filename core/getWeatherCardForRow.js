@@ -1,15 +1,15 @@
-import { MeleeWeatherCard } from './MeleeWeatherCard.js'
-import { RangedWeatherCard } from './RangedWeatherCard.js'
+import { FrontWeatherCard } from './FrontWeatherCard.js'
+import { CenterWeatherCard } from './CenterWeatherCard.js'
 import { Row } from './Row.js'
-import { SiegeWeatherCard } from './SiegeWeatherCard.js'
+import { BackWeatherCard } from './BackWeatherCard.js'
 
 export function getWeatherCardForRow(row) {
   switch (row) {
-    case Row.MELEE:
-      return MeleeWeatherCard
-    case Row.RANGED:
-      return RangedWeatherCard
-    case Row.SIEGE:
-      return SiegeWeatherCard
+    case Row.FRONT:
+      return FrontWeatherCard
+    case Row.CENTER:
+      return CenterWeatherCard
+    case Row.BACK:
+      return BackWeatherCard
   }
 }

@@ -7,13 +7,13 @@ import { Hand } from './Hand.js'
 import { HeroCard } from './HeroCard.js'
 import { Leader } from './Leader.js'
 import { Match } from './Match.js'
-import { MeleeRow } from './MeleeRow.js'
-import { MeleeWeatherCard } from './MeleeWeatherCard.js'
+import { FrontRow } from './FrontRow.js'
+import { FrontWeatherCard } from './FrontWeatherCard.js'
 import { Player } from './Player.js'
-import { RangedRow } from './RangedRow.js'
-import { RangedWeatherCard } from './RangedWeatherCard.js'
-import { SiegeRow } from './SiegeRow.js'
-import { SiegeWeatherCard } from './SiegeWeatherCard.js'
+import { CenterRow } from './CenterRow.js'
+import { CenterWeatherCard } from './CenterWeatherCard.js'
+import { BackRow } from './BackRow.js'
+import { BackWeatherCard } from './BackWeatherCard.js'
 import { UnitCard } from './UnitCard.js'
 
 export function deserializeMatch(serializedMatch) {
@@ -24,16 +24,16 @@ export function deserializeMatch(serializedMatch) {
     ['UnitCard', UnitCard],
     ['DrawCardsCard', DrawCardsCard],
     ['HeroCard', HeroCard],
-    ['MeleeWeatherCard', MeleeWeatherCard],
-    ['RangedWeatherCard', RangedWeatherCard],
-    ['SiegeWeatherCard', SiegeWeatherCard],
+    ['FrontWeatherCard', FrontWeatherCard],
+    ['CenterWeatherCard', CenterWeatherCard],
+    ['BackWeatherCard', BackWeatherCard],
     ['DoublePointsInRowCard', DoublePointsInRowCard],
     ['Hand', Hand],
     ['Leader', Leader],
     ['Board', Board],
-    ['MeleeRow', MeleeRow],
-    ['RangedRow', RangedRow],
-    ['SiegeRow', SiegeRow]
+    ['FrontRow', FrontRow],
+    ['CenterRow', CenterRow],
+    ['BackRow', BackRow]
   ])
   return deserialize(typeMapping, serializedMatch)
 }

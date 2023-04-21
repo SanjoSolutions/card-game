@@ -1,8 +1,8 @@
 import { Row } from './Row.js'
 import { WeatherCard } from './WeatherCard.js'
 
-export class RangedWeatherCard extends WeatherCard {
+export class CenterWeatherCard extends WeatherCard {
   get row() {
-    return Row.RANGED
+    return Row.CENTER
   }
 }

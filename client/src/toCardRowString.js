@@ -1,25 +1,25 @@
-import { MeleeWeatherCard } from 'core/MeleeWeatherCard.js'
-import { RangedWeatherCard } from 'core/RangedWeatherCard.js'
+import { FrontWeatherCard } from 'core/FrontWeatherCard.js'
+import { CenterWeatherCard } from 'core/CenterWeatherCard.js'
 import { Row } from 'core/Row.js'
-import { SiegeWeatherCard } from 'core/SiegeWeatherCard.js'
+import { BackWeatherCard } from 'core/BackWeatherCard.js'
 import { WeatherCard } from 'core/WeatherCard.js'
 
 export function toCardRowString(card) {
   if (typeof card.row === 'number') {
-    if (card.row === Row.MELEE) {
-      return 'Melee'
-    } else if (card.row === Row.RANGED) {
-      return 'Ranged'
-    } else if (card.row === Row.SIEGE) {
-      return 'Siege'
+    if (card.row === Row.FRONT) {
+      return 'Front'
+    } else if (card.row === Row.CENTER) {
+      return 'Center'
+    } else if (card.row === Row.BACK) {
+      return 'Back'
     }
   } else if (card instanceof WeatherCard) {
-    if (card instanceof MeleeWeatherCard) {
-      return 'Melee'
-    } else if (card instanceof RangedWeatherCard) {
-      return 'Ranged'
-    } else if (card instanceof SiegeWeatherCard) {
-      return 'Siege'
+    if (card instanceof FrontWeatherCard) {
+      return 'Front'
+    } else if (card instanceof CenterWeatherCard) {
+      return 'Center'
+    } else if (card instanceof BackWeatherCard) {
+      return 'Back'
     }
   }
   return ''

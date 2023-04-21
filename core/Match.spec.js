@@ -37,7 +37,7 @@ describe('Match', () => {
   describe('when both players have passed', () => {
     test('it is determined who wins the round', () => {
       const match = createMatch()
-      match.act(new PlayInRowPlayableCardAction(new UnitCard(1, Row.MELEE), Row.MELEE))
+      match.act(new PlayInRowPlayableCardAction(new UnitCard(1, Row.FRONT), Row.FRONT))
       match.act(new PassAction())
       match.act(new PassAction())
       expect(match.roundsWon[0]).toEqual(1)
@@ -47,7 +47,7 @@ describe('Match', () => {
     test('player 1 wins when he has more points on board', () => {
       const match = createMatch()
       match.act(new PassAction())
-      match.act(new PlayInRowPlayableCardAction(new UnitCard(1, Row.MELEE), Row.MELEE))
+      match.act(new PlayInRowPlayableCardAction(new UnitCard(1, Row.FRONT), Row.FRONT))
       match.act(new PassAction())
       expect(match.roundsWon[0]).toEqual(0)
       expect(match.roundsWon[1]).toEqual(1)

@@ -9,23 +9,23 @@ export function PlayerSide({
   reverse,
   onCardDragStart,
   onCardDragEnd,
-  onCardDroppedInMeleeRow,
-  onCardDroppedInRangedRow,
-  onCardDroppedInSiegeRow,
+  onCardDroppedInFrontRow,
+  onCardDroppedInCenterRow,
+  onCardDroppedInBackRow,
   onPlayCard,
   onPass,
   height,
-  isDroppableInMeleeRow,
-  isDroppableInRangedRow,
-  isDroppableInSiegeRow,
+  isDroppableInFrontRow,
+  isDroppableInCenterRow,
+  isDroppableInBackRow,
   showCards,
   showPassButton,
-  onCardDroppedInMeleeRowSpecialCardSlot,
-  isDroppableInMeleeRowSpecialCardSlot,
-  onCardDroppedInRangedRowSpecialCardSlot,
-  isDroppableInRangedRowSpecialCardSlot,
-  onCardDroppedInSiegeRowSpecialCardSlot,
-  isDroppableInSiegeRowSpecialCardSlot
+  onCardDroppedInFrontRowSpecialCardSlot,
+  isDroppableInFrontRowSpecialCardSlot,
+  onCardDroppedInCenterRowSpecialCardSlot,
+  isDroppableInCenterRowSpecialCardSlot,
+  onCardDroppedInBackRowSpecialCardSlot,
+  isDroppableInBackRowSpecialCardSlot
 }) {
   return (
     <div
@@ -50,20 +50,20 @@ export function PlayerSide({
         board={ player.board }
         match={ match }
         player={ player }
-        onCardDroppedInMeleeRow={ onCardDroppedInMeleeRow }
-        onCardDroppedInRangedRow={ onCardDroppedInRangedRow }
-        onCardDroppedInSiegeRow={ onCardDroppedInSiegeRow }
+        onCardDroppedInFrontRow={ onCardDroppedInFrontRow }
+        onCardDroppedInCenterRow={ onCardDroppedInCenterRow }
+        onCardDroppedInBackRow={ onCardDroppedInBackRow }
         onPass={ onPass }
-        droppableInMeleeRow={ isDroppableInMeleeRow }
-        droppableInRangedRow={ isDroppableInRangedRow }
-        droppableInSiegeRow={ isDroppableInSiegeRow }
+        droppableInFrontRow={ isDroppableInFrontRow }
+        droppableInCenterRow={ isDroppableInCenterRow }
+        droppableInBackRow={ isDroppableInBackRow }
         reverse={ reverse }
-        onCardDroppedInMeleeRowSpecialCardSlot={ onCardDroppedInMeleeRowSpecialCardSlot }
-        isDroppableInMeleeRowSpecialCardSlot={ isDroppableInMeleeRowSpecialCardSlot }
-        onCardDroppedInRangedRowSpecialCardSlot={ onCardDroppedInRangedRowSpecialCardSlot }
-        isDroppableInRangedRowSpecialCardSlot={ isDroppableInRangedRowSpecialCardSlot }
-        onCardDroppedInSiegeRowSpecialCardSlot={ onCardDroppedInSiegeRowSpecialCardSlot }
-        isDroppableInSiegeRowSpecialCardSlot={ isDroppableInSiegeRowSpecialCardSlot }
+        onCardDroppedInFrontRowSpecialCardSlot={ onCardDroppedInFrontRowSpecialCardSlot }
+        isDroppableInFrontRowSpecialCardSlot={ isDroppableInFrontRowSpecialCardSlot }
+        onCardDroppedInCenterRowSpecialCardSlot={ onCardDroppedInCenterRowSpecialCardSlot }
+        isDroppableInCenterRowSpecialCardSlot={ isDroppableInCenterRowSpecialCardSlot }
+        onCardDroppedInBackRowSpecialCardSlot={ onCardDroppedInBackRowSpecialCardSlot }
+        isDroppableInBackRowSpecialCardSlot={ isDroppableInBackRowSpecialCardSlot }
         showPassButton={ showPassButton }
       />
     </div>

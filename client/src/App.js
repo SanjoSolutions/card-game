@@ -34,20 +34,20 @@ export class App extends React.Component {
       isDroppableInWeatherCardsZone: false,
       isDroppableInRow: [
         {
-          isDroppableInMeleeRow: false,
-          isDroppableInRangedRow: false,
-          isDroppableInSiegeRow: false,
-          isDroppableInMeleeRowSpecialCardSlot: false,
-          isDroppableInRangedRowSpecialCardSlot: false,
-          isDroppableInSiegeRowSpecialCardSlot: false,
+          isDroppableInFrontRow: false,
+          isDroppableInCenterRow: false,
+          isDroppableInBackRow: false,
+          isDroppableInFrontRowSpecialCardSlot: false,
+          isDroppableInCenterRowSpecialCardSlot: false,
+          isDroppableInBackRowSpecialCardSlot: false,
         },
         {
-          isDroppableInMeleeRow: false,
-          isDroppableInRangedRow: false,
-          isDroppableInSiegeRow: false,
-          isDroppableInMeleeRowSpecialCardSlot: false,
-          isDroppableInRangedRowSpecialCardSlot: false,
-          isDroppableInSiegeRowSpecialCardSlot: false,
+          isDroppableInFrontRow: false,
+          isDroppableInCenterRow: false,
+          isDroppableInBackRow: false,
+          isDroppableInFrontRowSpecialCardSlot: false,
+          isDroppableInCenterRowSpecialCardSlot: false,
+          isDroppableInBackRowSpecialCardSlot: false,
         },
       ],
       height: this._calculateHeight(),
@@ -58,22 +58,22 @@ export class App extends React.Component {
     this._updateHeight = this._updateHeight.bind(this)
     this._onCardDroppedInWeatherCardsZone = this._onCardDroppedInWeatherCardsZone.bind(this)
     this._onCardDropped = this._onCardDropped.bind(this)
-    this._onCardDroppedInMeleeRow = this._onCardDroppedInMeleeRow.bind(this)
-    this._onCardDroppedInRangedRow = this._onCardDroppedInRangedRow.bind(this)
-    this._onCardDroppedInSiegeRow = this._onCardDroppedInSiegeRow.bind(this)
-    this._onCardDroppedInPlayer0MeleeRow = this._onCardDroppedInPlayer0MeleeRow.bind(this)
-    this._onCardDroppedInPlayer0RangedRow = this._onCardDroppedInPlayer0RangedRow.bind(this)
-    this._onCardDroppedInPlayer0SiegeRow = this._onCardDroppedInPlayer0SiegeRow.bind(this)
-    this._onCardDroppedInPlayer1MeleeRow = this._onCardDroppedInPlayer1MeleeRow.bind(this)
-    this._onCardDroppedInPlayer1RangedRow = this._onCardDroppedInPlayer1RangedRow.bind(this)
-    this._onCardDroppedInPlayer1SiegeRow = this._onCardDroppedInPlayer1SiegeRow.bind(this)
+    this._onCardDroppedInFrontRow = this._onCardDroppedInFrontRow.bind(this)
+    this._onCardDroppedInCenterRow = this._onCardDroppedInCenterRow.bind(this)
+    this._onCardDroppedInBackRow = this._onCardDroppedInBackRow.bind(this)
+    this._onCardDroppedInPlayer0FrontRow = this._onCardDroppedInPlayer0FrontRow.bind(this)
+    this._onCardDroppedInPlayer0CenterRow = this._onCardDroppedInPlayer0CenterRow.bind(this)
+    this._onCardDroppedInPlayer0BackRow = this._onCardDroppedInPlayer0BackRow.bind(this)
+    this._onCardDroppedInPlayer1FrontRow = this._onCardDroppedInPlayer1FrontRow.bind(this)
+    this._onCardDroppedInPlayer1CenterRow = this._onCardDroppedInPlayer1CenterRow.bind(this)
+    this._onCardDroppedInPlayer1BackRow = this._onCardDroppedInPlayer1BackRow.bind(this)
     this._onPlayCard = this._onPlayCard.bind(this)
     this._onPlayer0Pass = this._onPlayer0Pass.bind(this)
     this._onPlayer1Pass = this._onPlayer1Pass.bind(this)
     this._onPass = this._onPass.bind(this)
-    this._onCardDroppedInMeleeRowSpecialCardSlot = this._onCardDroppedInMeleeRowSpecialCardSlot.bind(this)
-    this._onCardDroppedInRangedRowSpecialCardSlot = this._onCardDroppedInRangedRowSpecialCardSlot.bind(this)
-    this._onCardDroppedInSiegeRowSpecialCardSlot = this._onCardDroppedInSiegeRowSpecialCardSlot.bind(this)
+    this._onCardDroppedInFrontRowSpecialCardSlot = this._onCardDroppedInFrontRowSpecialCardSlot.bind(this)
+    this._onCardDroppedInCenterRowSpecialCardSlot = this._onCardDroppedInCenterRowSpecialCardSlot.bind(this)
+    this._onCardDroppedInBackRowSpecialCardSlot = this._onCardDroppedInBackRowSpecialCardSlot.bind(this)
   }
 
   exportMatch() {
@@ -125,20 +125,20 @@ export class App extends React.Component {
       isDroppableInWeatherCardsZone: false,
       isDroppableInRow: [
         {
-          isDroppableInMeleeRow: false,
-          isDroppableInRangedRow: false,
-          isDroppableInSiegeRow: false,
-          isDroppableInMeleeRowSpecialCardSlot: false,
-          isDroppableInRangedRowSpecialCardSlot: false,
-          isDroppableInSiegeRowSpecialCardSlot: false,
+          isDroppableInFrontRow: false,
+          isDroppableInCenterRow: false,
+          isDroppableInBackRow: false,
+          isDroppableInFrontRowSpecialCardSlot: false,
+          isDroppableInCenterRowSpecialCardSlot: false,
+          isDroppableInBackRowSpecialCardSlot: false,
         },
         {
-          isDroppableInMeleeRow: false,
-          isDroppableInRangedRow: false,
-          isDroppableInSiegeRow: false,
-          isDroppableInMeleeRowSpecialCardSlot: false,
-          isDroppableInRangedRowSpecialCardSlot: false,
-          isDroppableInSiegeRowSpecialCardSlot: false,
+          isDroppableInFrontRow: false,
+          isDroppableInCenterRow: false,
+          isDroppableInBackRow: false,
+          isDroppableInFrontRowSpecialCardSlot: false,
+          isDroppableInCenterRowSpecialCardSlot: false,
+          isDroppableInBackRowSpecialCardSlot: false,
         },
       ],
     }
@@ -149,20 +149,20 @@ export class App extends React.Component {
         const isDroppableInRow = state.isDroppableInRow[card instanceof DrawCardsCard ?
           (playerIndex + 1) % 2 :
           playerIndex]
-        if (card.row === Row.MELEE) {
-          isDroppableInRow.isDroppableInMeleeRow = true
-        } else if (card.row === Row.RANGED) {
-          isDroppableInRow.isDroppableInRangedRow = true
-        } else if (card.row === Row.SIEGE) {
-          isDroppableInRow.isDroppableInSiegeRow = true
+        if (card.row === Row.FRONT) {
+          isDroppableInRow.isDroppableInFrontRow = true
+        } else if (card.row === Row.CENTER) {
+          isDroppableInRow.isDroppableInCenterRow = true
+        } else if (card.row === Row.BACK) {
+          isDroppableInRow.isDroppableInBackRow = true
         }
       } else if (card instanceof WeatherCard) {
         state.isDroppableInWeatherCardsZone = true
       } else if (card instanceof RowSpecialCard) {
         const isDroppableInRow = state.isDroppableInRow[playerIndex]
-        isDroppableInRow.isDroppableInMeleeRowSpecialCardSlot = true
-        isDroppableInRow.isDroppableInRangedRowSpecialCardSlot = true
-        isDroppableInRow.isDroppableInSiegeRowSpecialCardSlot = true
+        isDroppableInRow.isDroppableInFrontRowSpecialCardSlot = true
+        isDroppableInRow.isDroppableInCenterRowSpecialCardSlot = true
+        isDroppableInRow.isDroppableInBackRowSpecialCardSlot = true
       }
     }
 
@@ -174,14 +174,14 @@ export class App extends React.Component {
       isDroppableInWeatherCardsZone: false,
       isDroppableInRow: [
         {
-          isDroppableInMeleeRow: false,
-          isDroppableInRangedRow: false,
-          isDroppableInSiegeRow: false,
+          isDroppableInFrontRow: false,
+          isDroppableInCenterRow: false,
+          isDroppableInBackRow: false,
         },
         {
-          isDroppableInMeleeRow: false,
-          isDroppableInRangedRow: false,
-          isDroppableInSiegeRow: false,
+          isDroppableInFrontRow: false,
+          isDroppableInCenterRow: false,
+          isDroppableInBackRow: false,
         },
       ],
     })
@@ -208,40 +208,40 @@ export class App extends React.Component {
     this._act(new PlayInRowPlayableCardAction(card, row), this.match.playerToAct)
   }
 
-  _onCardDroppedInMeleeRow(player, index) {
-    this._onCardDropped(player, Row.MELEE, index)
+  _onCardDroppedInFrontRow(player, index) {
+    this._onCardDropped(player, Row.FRONT, index)
   }
 
-  _onCardDroppedInRangedRow(player, index) {
-    this._onCardDropped(player, Row.RANGED, index)
+  _onCardDroppedInCenterRow(player, index) {
+    this._onCardDropped(player, Row.CENTER, index)
   }
 
-  _onCardDroppedInSiegeRow(player, index) {
-    this._onCardDropped(player, Row.SIEGE, index)
+  _onCardDroppedInBackRow(player, index) {
+    this._onCardDropped(player, Row.BACK, index)
   }
 
-  _onCardDroppedInPlayer0MeleeRow(index) {
-    this._onCardDroppedInMeleeRow(this.match.players[0], index)
+  _onCardDroppedInPlayer0FrontRow(index) {
+    this._onCardDroppedInFrontRow(this.match.players[0], index)
   }
 
-  _onCardDroppedInPlayer0RangedRow(index) {
-    this._onCardDroppedInRangedRow(this.match.players[0], index)
+  _onCardDroppedInPlayer0CenterRow(index) {
+    this._onCardDroppedInCenterRow(this.match.players[0], index)
   }
 
-  _onCardDroppedInPlayer0SiegeRow(index) {
-    this._onCardDroppedInSiegeRow(this.match.players[0], index)
+  _onCardDroppedInPlayer0BackRow(index) {
+    this._onCardDroppedInBackRow(this.match.players[0], index)
   }
 
-  _onCardDroppedInPlayer1MeleeRow(index) {
-    this._onCardDroppedInMeleeRow(this.match.players[1], index)
+  _onCardDroppedInPlayer1FrontRow(index) {
+    this._onCardDroppedInFrontRow(this.match.players[1], index)
   }
 
-  _onCardDroppedInPlayer1RangedRow(index) {
-    this._onCardDroppedInRangedRow(this.match.players[1], index)
+  _onCardDroppedInPlayer1CenterRow(index) {
+    this._onCardDroppedInCenterRow(this.match.players[1], index)
   }
 
-  _onCardDroppedInPlayer1SiegeRow(index) {
-    this._onCardDroppedInSiegeRow(this.match.players[1], index)
+  _onCardDroppedInPlayer1BackRow(index) {
+    this._onCardDroppedInBackRow(this.match.players[1], index)
   }
 
   _onPlayCard({ player, card }) {
@@ -274,19 +274,19 @@ export class App extends React.Component {
     }
   }
 
-  _onCardDroppedInMeleeRowSpecialCardSlot(index) {
+  _onCardDroppedInFrontRowSpecialCardSlot(index) {
     const card = this.match.actingPlayer.hand.cards[index]
-    this._act(new PlayInRowPlayableCardAction(card, Row.MELEE), this.match.playerToAct)
+    this._act(new PlayInRowPlayableCardAction(card, Row.FRONT), this.match.playerToAct)
   }
 
-  _onCardDroppedInRangedRowSpecialCardSlot(index) {
+  _onCardDroppedInCenterRowSpecialCardSlot(index) {
     const card = this.match.actingPlayer.hand.cards[index]
-    this._act(new PlayInRowPlayableCardAction(card, Row.RANGED), this.match.playerToAct)
+    this._act(new PlayInRowPlayableCardAction(card, Row.CENTER), this.match.playerToAct)
   }
 
-  _onCardDroppedInSiegeRowSpecialCardSlot(index) {
+  _onCardDroppedInBackRowSpecialCardSlot(index) {
     const card = this.match.actingPlayer.hand.cards[index]
-    this._act(new PlayInRowPlayableCardAction(card, Row.SIEGE), this.match.playerToAct)
+    this._act(new PlayInRowPlayableCardAction(card, Row.BACK), this.match.playerToAct)
   }
 
   render() {
@@ -304,21 +304,21 @@ export class App extends React.Component {
             player={ this.match.players[0] }
             onCardDragStart={ this._onCardDragStart }
             onCardDragEnd={ this._onCardDragEnd }
-            onCardDroppedInMeleeRow={ this._onCardDroppedInPlayer0MeleeRow }
-            onCardDroppedInRangedRow={ this._onCardDroppedInPlayer0RangedRow }
-            onCardDroppedInSiegeRow={ this._onCardDroppedInPlayer0SiegeRow }
+            onCardDroppedInFrontRow={ this._onCardDroppedInPlayer0FrontRow }
+            onCardDroppedInCenterRow={ this._onCardDroppedInPlayer0CenterRow }
+            onCardDroppedInBackRow={ this._onCardDroppedInPlayer0BackRow }
             onPlayCard={ this._onPlayCard }
             onPass={ this._onPlayer0Pass }
             height={ this.state.height }
-            isDroppableInMeleeRow={ this.state.isDroppableInRow[0].isDroppableInMeleeRow }
-            isDroppableInRangedRow={ this.state.isDroppableInRow[0].isDroppableInRangedRow }
-            isDroppableInSiegeRow={ this.state.isDroppableInRow[0].isDroppableInSiegeRow }
-            onCardDroppedInMeleeRowSpecialCardSlot={ this._onCardDroppedInMeleeRowSpecialCardSlot }
-            isDroppableInMeleeRowSpecialCardSlot={ this.state.isDroppableInRow[0].isDroppableInMeleeRowSpecialCardSlot }
-            onCardDroppedInRangedRowSpecialCardSlot={ this._onCardDroppedInRangedRowSpecialCardSlot }
-            isDroppableInRangedRowSpecialCardSlot={ this.state.isDroppableInRow[0].isDroppableInRangedRowSpecialCardSlot }
-            onCardDroppedInSiegeRowSpecialCardSlot={ this._onCardDroppedInSiegeRowSpecialCardSlot }
-            isDroppableInSiegeRowSpecialCardSlot={ this.state.isDroppableInRow[0].isDroppableInSiegeRowSpecialCardSlot }
+            isDroppableInFrontRow={ this.state.isDroppableInRow[0].isDroppableInFrontRow }
+            isDroppableInCenterRow={ this.state.isDroppableInRow[0].isDroppableInCenterRow }
+            isDroppableInBackRow={ this.state.isDroppableInRow[0].isDroppableInBackRow }
+            onCardDroppedInFrontRowSpecialCardSlot={ this._onCardDroppedInFrontRowSpecialCardSlot }
+            isDroppableInFrontRowSpecialCardSlot={ this.state.isDroppableInRow[0].isDroppableInFrontRowSpecialCardSlot }
+            onCardDroppedInCenterRowSpecialCardSlot={ this._onCardDroppedInCenterRowSpecialCardSlot }
+            isDroppableInCenterRowSpecialCardSlot={ this.state.isDroppableInRow[0].isDroppableInCenterRowSpecialCardSlot }
+            onCardDroppedInBackRowSpecialCardSlot={ this._onCardDroppedInBackRowSpecialCardSlot }
+            isDroppableInBackRowSpecialCardSlot={ this.state.isDroppableInRow[0].isDroppableInBackRowSpecialCardSlot }
             showCards={ !this.botEnabled }
             showPassButton={ !this.botEnabled }
           />
@@ -328,21 +328,21 @@ export class App extends React.Component {
             reverse
             onCardDragStart={ this._onCardDragStart }
             onCardDragEnd={ this._onCardDragEnd }
-            onCardDroppedInMeleeRow={ this._onCardDroppedInPlayer1MeleeRow }
-            onCardDroppedInRangedRow={ this._onCardDroppedInPlayer1RangedRow }
-            onCardDroppedInSiegeRow={ this._onCardDroppedInPlayer1SiegeRow }
+            onCardDroppedInFrontRow={ this._onCardDroppedInPlayer1FrontRow }
+            onCardDroppedInCenterRow={ this._onCardDroppedInPlayer1CenterRow }
+            onCardDroppedInBackRow={ this._onCardDroppedInPlayer1BackRow }
             onPlayCard={ this._onPlayCard }
             onPass={ this._onPlayer1Pass }
             height={ this.state.height }
-            isDroppableInMeleeRow={ this.state.isDroppableInRow[1].isDroppableInMeleeRow }
-            isDroppableInRangedRow={ this.state.isDroppableInRow[1].isDroppableInRangedRow }
-            isDroppableInSiegeRow={ this.state.isDroppableInRow[1].isDroppableInSiegeRow }
-            onCardDroppedInMeleeRowSpecialCardSlot={ this._onCardDroppedInMeleeRowSpecialCardSlot }
-            isDroppableInMeleeRowSpecialCardSlot={ this.state.isDroppableInRow[1].isDroppableInMeleeRowSpecialCardSlot }
-            onCardDroppedInRangedRowSpecialCardSlot={ this._onCardDroppedInRangedRowSpecialCardSlot }
-            isDroppableInRangedRowSpecialCardSlot={ this.state.isDroppableInRow[1].isDroppableInRangedRowSpecialCardSlot }
-            onCardDroppedInSiegeRowSpecialCardSlot={ this._onCardDroppedInSiegeRowSpecialCardSlot }
-            isDroppableInSiegeRowSpecialCardSlot={ this.state.isDroppableInRow[1].isDroppableInSiegeRowSpecialCardSlot }
+            isDroppableInFrontRow={ this.state.isDroppableInRow[1].isDroppableInFrontRow }
+            isDroppableInCenterRow={ this.state.isDroppableInRow[1].isDroppableInCenterRow }
+            isDroppableInBackRow={ this.state.isDroppableInRow[1].isDroppableInBackRow }
+            onCardDroppedInFrontRowSpecialCardSlot={ this._onCardDroppedInFrontRowSpecialCardSlot }
+            isDroppableInFrontRowSpecialCardSlot={ this.state.isDroppableInRow[1].isDroppableInFrontRowSpecialCardSlot }
+            onCardDroppedInCenterRowSpecialCardSlot={ this._onCardDroppedInCenterRowSpecialCardSlot }
+            isDroppableInCenterRowSpecialCardSlot={ this.state.isDroppableInRow[1].isDroppableInCenterRowSpecialCardSlot }
+            onCardDroppedInBackRowSpecialCardSlot={ this._onCardDroppedInBackRowSpecialCardSlot }
+            isDroppableInBackRowSpecialCardSlot={ this.state.isDroppableInRow[1].isDroppableInBackRowSpecialCardSlot }
             showCards={ true }
             showPassButton={ true }
           />
