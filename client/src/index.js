@@ -4,6 +4,7 @@ import * as ReactDOMClient from "react-dom/client"
 import { App } from "./App"
 import "./index.css"
 import reportWebVitals from "./reportWebVitals"
+import 'mobile-drag-drop/default.css'
 
 polyfill()
 

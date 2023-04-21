@@ -6,11 +6,18 @@ import './WeatherCards.css'
 export function WeatherCards({ match, height, droppable, onCardDropped, isShown }) {
   const ref = useRef(null)
 
-  const onDragOver = useCallback(
-    function onDragOver(event) {
+  const onDragEnter = useCallback(
+    function onDragEnter(event) {
       event.preventDefault()
       event.dataTransfer.dropEffect = 'move'
       ref.current.classList.add('weather-cards__inner--drag-over')
+    },
+    [],
+  )
+
+  const onDragOver = useCallback(
+    function onDragOver(event) {
+      event.preventDefault()
     },
     [],
   )
@@ -52,6 +59,7 @@ export function WeatherCards({ match, height, droppable, onCardDropped, isShown 
       <div
         ref={ ref }
         className="weather-cards__inner" style={ { height: `${ height }px` } }
+        onDragEnter={ droppable ? onDragEnter : undefined }
         onDragOver={ droppable ? onDragOver : undefined }
         onDragLeave={ droppable ? onDragLeave : undefined }
         onDrop={ droppable ? onDrop : undefined }

@@ -1,13 +1,13 @@
-import { useCallback, useRef } from 'react'
-import { Card as CardComponent } from './Card.js'
-import './Row.css'
+import { useCallback, useRef } from "react"
+import { Card as CardComponent } from "./Card.js"
+import "./Row.css"
 
 export function Row({
   row, player, match, onCardDropped, droppable, totalPointsTitle, className,
   onCardDroppedInSpecialCardSlot, droppableInSpecialCardSlot,
 }) {
   return (
-    <div className={ `row${ className ? ` ${ className }` : '' }` }>
+    <div className={ `row${ className ? ` ${ className }` : "" }` }>
       <div className="row__total-points" title={ totalPointsTitle }>
         { row.determineTotalPoints(match) }
       </div>
@@ -29,18 +29,25 @@ export function Row({
 export function RowSpecialCardSlot({ specialCard, onCardDropped, droppable }) {
   const ref = useRef(null)
 
+  const onDragEnter = useCallback(
+    function onDragEnter(event) {
+      event.preventDefault()
+      event.dataTransfer.dropEffect = "move"
+      ref.current.classList.add("row__special-card-slot--drag-over")
+    },
+    [],
+  )
+
   const onDragOver = useCallback(
     function onDragOver(event) {
       event.preventDefault()
-      event.dataTransfer.dropEffect = 'move'
-      ref.current.classList.add('row__special-card-slot--drag-over')
     },
     [],
   )
 
   const removeDragOverStyle = useCallback(
     function removeDragOverStyle() {
-      ref.current.classList.remove('row__special-card-slot--drag-over')
+      ref.current.classList.remove("row__special-card-slot--drag-over")
     },
     [ref],
   )
@@ -54,7 +61,7 @@ export function RowSpecialCardSlot({ specialCard, onCardDropped, droppable }) {
 
   const onDrop = useCallback(
     function onDrop(event) {
-      const { index } = JSON.parse(event.dataTransfer.getData('application/json'))
+      const { index } = JSON.parse(event.dataTransfer.getData("application/json"))
       event.preventDefault()
       if (onCardDropped) {
         onCardDropped(index)
@@ -68,6 +75,7 @@ export function RowSpecialCardSlot({ specialCard, onCardDropped, droppable }) {
     <div
       ref={ ref }
       className="row__special-card-slot"
+      onDragEnter={ droppable ? onDragEnter : undefined }
       onDragOver={ droppable ? onDragOver : undefined }
       onDragLeave={ droppable ? onDragLeave : undefined }
       onDrop={ droppable ? onDrop : undefined }
@@ -87,18 +95,25 @@ export function RowSpecialCardSlot({ specialCard, onCardDropped, droppable }) {
 export function RowUnitCards({ row, match, onCardDropped, droppable }) {
   const unitCardsRef = useRef(null)
 
+  const onDragEnter = useCallback(
+    function onDragEnter(event) {
+      event.preventDefault()
+      event.dataTransfer.dropEffect = "move"
+      unitCardsRef.current.classList.add("row__unit-cards--drag-over")
+    },
+    [],
+  )
+
   const onDragOver = useCallback(
     function onDragOver(event) {
       event.preventDefault()
-      event.dataTransfer.dropEffect = 'move'
-      unitCardsRef.current.classList.add('row__unit-cards--drag-over')
     },
     [],
   )
 
   const removeDragOverStyle = useCallback(
     function removeDragOverStyle() {
-      unitCardsRef.current.classList.remove('row__unit-cards--drag-over')
+      unitCardsRef.current.classList.remove("row__unit-cards--drag-over")
     },
     [unitCardsRef],
   )
@@ -112,7 +127,7 @@ export function RowUnitCards({ row, match, onCardDropped, droppable }) {
 
   const onDrop = useCallback(
     function onDrop(event) {
-      const { index } = JSON.parse(event.dataTransfer.getData('application/json'))
+      const { index } = JSON.parse(event.dataTransfer.getData("application/json"))
       event.preventDefault()
       if (onCardDropped) {
         onCardDropped(index)
@@ -126,13 +141,18 @@ export function RowUnitCards({ row, match, onCardDropped, droppable }) {
     <div
       ref={ unitCardsRef }
       className="row__unit-cards"
+      onDragEnter={ droppable ? onDragEnter : undefined }
       onDragOver={ droppable ? onDragOver : undefined }
       onDragLeave={ droppable ? onDragLeave : undefined }
       onDrop={ droppable ? onDrop : undefined }
     >
       {
         row.cards.map(
-          card => <CardComponent key={ card.id } card={ card } match={ match } />,
+          card => <CardComponent
+            key={ card.id }
+            card={ card }
+            match={ match }
+          />,
         )
       }
     </div>
