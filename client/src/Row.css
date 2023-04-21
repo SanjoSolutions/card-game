@@ -1,6 +1,6 @@
 .row {
   display: flex;
-  min-height: 72px;
+  min-height: 48px;
 }
 
 .row__total-points {
@@ -56,4 +56,10 @@
 
 .row__unit-cards.card:last-child {
   margin-right: 0;
+}
+
+@media (min-width: 768px) {
+  .row {
+    min-height: 72px;
+  }
 }
